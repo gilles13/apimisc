@@ -1,0 +1,55 @@
+ACCUEIL
+=====================================================
+
+Column {.tabset}
+-------------------------------------------
+
+### Activité
+
+```{r}
+bslib::value_box(
+	title = "Bonjour, vous avez demandé des informations sur le siren :",
+  value = identsiren,
+	theme = "blue",
+  showcase = bsicons::bs_icon("search"),
+# 	shiny::h4(denomUL),
+	shiny::p("")
+)
+```
+
+### Logs
+
+```{r}
+datereq <- Sys.time()
+datereqISO <- datereq |> format("%Y-%m-%d %H:%M:%S")
+datereqFR <- datereq |> format("%d-%m-%Y %H:%M:%S")
+userId <- Sys.getenv("LOGNAME")
+osType <- .Platform$OS.type
+rVersion <- R.version$version.string
+rNickname <- R.version$nickname
+running <- sessionInfo()$running
+
+dflogs <- 
+	data.frame(
+	"indic" = c("date",
+							"utilisateur",
+							"type d'OS",
+							"running on",
+							"R",
+							"Nick"
+							),
+	"val" = c(datereqISO,
+						userId,
+						osType,
+						running,
+						rVersion,
+						rNickname))
+
+dflogs |> 
+	knitr::kable()
+```
+
+### Info session
+```{r}
+print(sessionInfo())
+```

@@ -1,0 +1,16 @@
+AUTRES
+=====================================================
+
+Column {.tabset}
+-------------------------------------------
+
+### BALO
+```{r}
+print("todo")
+```
+
+### INFO-FI
+```{r}
+print("todo")
+print("https://www.data.gouv.fr/dataservices/api-info-financiere/")
+```

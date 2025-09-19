@@ -1,0 +1,21 @@
+cat;theme;prod;service;lien;api;portail;restriction;package;package_url
+eco;entreprises;insee;sirene;https://insee.fr;https://data.gouv.fr/dataservices/api-sirene-open-data/;https://portail-api.insee.fr/;compte utilisateur;apisirene;
+eco;divers;insee;melodi;https://insee.fr;https://data.gouv.fr/dataservices/api-melodi/;https://portail-api.insee.fr/;compte utilisateur;melodi;https://inseefrlab.github.io/melodi/
+eco;séries chrono;insee;BDM;https://insee.fr/fr/information/2411675;https://data.gouv.fr/dataservices/api-bdm/;;aucune;insee;https://cran.r-project.org/web/packages/insee/index.html
+eco;entreprises;inpi;rne;https://inpi.fr;https://data.inpi.fr/;;compte utilisateur;apiinpirne;
+eco;adresses;ign;BAN;https://ign.fr;https://data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban/;;aucune;;
+eco;banques;mefi;FICOBA;https://service-public.fr/particuliers/vosdroits/F2233;https://data.gouv.fr/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba/;;habilitation;;
+eco;emploi;france travail;offres d emploi;;https://data.gouv.fr/dataservices/api-offres-demploi/;;aucune;;
+eco;banque;mefi;gel des avoirs;;https://data.gouv.fr/dataservices/api-gels-des-avoirs/;;aucune;;
+eco;individus;mefi;R2P;;https://data.gouv.fr/dataservices/api-recherche-des-personnes-physiques-r2p/;;habilitation;;
+eco;foncier;cerema;valeur foncière;https://explore.data.gouv.fr/fr/immobilier?onglet=carte&filtre=tous;https://data.gouv.fr/dataservices/api-donnees-foncieres/;;habilitation;;
+eco;fiscalite;mefi;impot particulier;;https://data.gouv.fr/dataservices/api-impot-particulier/;;habilitation;;
+eco;fiscalite;dgfip;sfip;https://portail.dgfip.finances.gouv.fr/;https://data.gouv.fr/dataservices/api-service-finances-publiques-sfip/;;habilitation;;
+eco;energie;mte;sdes;https://statistiques.developpement-durable.gouv.fr/;https://data.gouv.fr/dataservices/api-donnees-locales-de-consommation-denergie/;;NA;;
+eco;tranport;mte;sdes;https://ecologie.gouv.fr/;https://data.gouv.fr/dataservices/le-point-dacces-national-aux-donnees-de-transport/;;NA;;
+juridique;textes;pm;legifrance;https://legifrance.gouv.fr/;https://data.gouv.fr/dataservices/legifrance/;https://piste.gouv.fr/;compte utilisateur;;
+juridique;annonces civiles et commerciales;pm;BODACC;https://bodacc.fr/pages/home/;https://data.gouv.fr/dataservices/api-bulletin-officiel-des-annonces-civiles-et-commerciales-bodacc/;;aucune;apimisc;
+juridique;annonces légales;pm;BALO;https://journal-officiel.gouv.fr/pages/balo/;https://data.gouv.fr/dataservices/api-bulletin-des-annonces-legales-obligatoires-balo/;;aucune;apimisc;
+juridique;annonces de marchés publics;pm;BOAMP;;https://data.gouv.fr/dataservices/api-bulletin-officiel-des-annonces-des-marches-publics-boamp/;;aucune;;
+juridique;finance;pm;info-financière;;https://data.gouv.fr/dataservices/api-info-financiere/;;aucune;apimisc;
+soc;prestations;urssaf;;https://urssaf.fr;https://data.gouv.fr/dataservices/api-donnees-ouvertes-de-lurssaf/;https://open.urssaf.fr/pages/home/;NA;;

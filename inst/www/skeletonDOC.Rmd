@@ -1,0 +1,21 @@
+DOC
+=====================================================
+
+Column {.tabset}
+-------------------------------------------
+
+### Structure
+
+
+### OPEN DATA
+
+```{r}
+pathimage <- apimisc_www_path()
+knitr::include_graphics(path = paste0(pathimage, "wikipedia_opendata.png"))
+```
+
+### Textes
+
+
+### Misc
+

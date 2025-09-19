@@ -1,0 +1,12 @@
+BODACC
+=====================================================
+
+```{r}
+annBodacc <- 
+	identsiren |> 
+	apimisc_get_bodacc_siren()
+
+annBodacc |> 
+	apimisc_parse_bodacc_siren() |> 
+	DT::datatable(rownames = FALSE, escape = FALSE)
+```

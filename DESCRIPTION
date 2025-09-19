@@ -1,0 +1,24 @@
+Package: apimisc
+Title: apimisc : un package pour faciliter les requêtes sur diverses API
+Version: 0.0.0.9000
+Authors@R: 
+    person("Gilles", "Fidani", , "gillesfidani@gmail.com", role = c("aut", "cre"))
+Description: Le package apimisc permet de faciliter des requêtes sur certaines API, dont BODACC et BALO.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Language: fr
+Depends: 
+    R (>= 4.1)
+Imports: 
+    dplyr (>= 0.8),
+    httr2,
+    purrr,
+    tibble,
+    tidyr
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

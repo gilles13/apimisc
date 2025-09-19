@@ -1,0 +1,175 @@
+INPI
+=====================================================
+
+Column {.tabset}
+-------------------------------------------
+
+### Général
+
+```{r}
+
+mydtinpi <- inpi_get_siren(identsiren)
+mydtinpiai <- inpi_get_acte_infos(identsiren)
+
+# mydtinpi <- readRDS(file = "~/Documents/wip/api/cmacgmsiren.RDS")
+# mydtinpiai <- readRDS(file = "~/Documents/wip/api/cmacgmai.RDS")
+
+# mydtinpi <- readRDS(file = "~/Documents/wip/api/data/airbushelicosiren.RDS")
+# mydtinpiai <- readRDS(file = "~/Documents/wip/api/data/airbushelicoactesinfos.RDS")
+
+# mydtinpi <- readRDS(file = "~/Documents/wip/api/data/vmanefilssiren.RDS")
+# mydtinpiai <- readRDS(file = "~/Documents/wip/api/data/vmanefilsai.RDS")
+
+
+general <-
+	mydtinpi |> 
+	inpi_parse_pm()
+
+objetEntr <- 
+	general |> 
+	purrr::pluck("objetEntr", .default = "")
+
+descripDetaillee <- 
+	mydtinpi |> 
+	purrr::pluck("formality", "content",
+							 "personneMorale", "etablissementPrincipal",
+							 "activites", "descriptionDetaillee",
+							 .default = "")
+
+denomEntr <- 
+	general |> 
+	purrr::pluck("denom", .default = "")
+
+deviseK <- 
+	general |>
+	purrr::pluck("deviseCapital", .default = NA)
+
+montantK <- 
+	general |> 
+	purrr::pluck("montantCapital", .default = NA)
+
+montantK <- format(x = montantK, scientific = FALSE, big.mark = " ")
+
+numVoie <- general |> purrr::pluck("numVoie", .default = "")
+typeVoie <- general |> purrr::pluck("typeVoie", .default = "")
+voie <- general |> purrr::pluck("voie", .default = "")
+codePostal <- general |> purrr::pluck("codePostal", .default = "")
+commune <- general |> purrr::pluck("commune", .default = "")
+
+linkAvisSitINPI <- 
+	identsiren |> 
+	inpi_get_extrait(url = TRUE) |> 
+	apimisc_make_link(text = "Attestation d'immatriculation au RNE")
+
+
+vbs2 <- 
+	list(
+			 bslib::value_box(
+					title = "Identite",
+					value = denomEntr,
+					theme = "green",
+					showcase = bsicons::bs_icon("bank2"),
+					shiny::h6(paste0("Objet : ", objetEntr)),
+					shiny::h6(paste0("Description : ", descripDetaillee)),
+					shiny::h6(paste0("Montant capital : ", montantK)),
+					shiny::h6(paste0("Devise capital : ", deviseK)),
+					shiny::h6(
+						paste0(
+									 numVoie,
+									 " ",
+									 typeVoie,
+									 " ",
+									 voie,
+									 " ",
+									 codePostal,
+									 " ",
+									 commune)),
+												htmltools::HTML(linkAvisSitINPI)
+			 )
+)
+
+bslib::layout_column_wrap(
+  width = "250px",
+	height = "350px",
+  !!!vbs2
+)
+
+```
+
+### Pouvoirs
+
+```{r}
+pouvoirs <- mydtinpi |> inpi_pouvoirs()
+pouvoirs |> DT::datatable(rownames = FALSE)
+```
+
+### Actes
+
+```{r}
+
+df0 <- 
+	mydtinpiai |> 
+  purrr::pluck("actes")
+
+df0 <- 
+	df0 |> 
+	dplyr::select(-typeRdd, -nomDocument)
+
+df1 <- 
+	mydtinpiai |> 
+  purrr::pluck("actes", "typeRdd")
+
+df1 <- 
+	df1 |> 
+	lapply(FUN = function(x) {
+					 res <- x |> purrr::pluck("decision")
+					 res <- trimws(res, which = "both")
+					 res <- res |> stringr::str_flatten(", ", na.rm = TRUE)
+					 return(res)
+	}
+)
+
+df1 <- 
+	df1 |> 
+	tibble::enframe() |> 
+	dplyr::select(value) |> 
+	dplyr::rename(descr = value)
+
+dfAll <- 
+	cbind(df0, df1)
+
+dfAll <- 
+	dfAll |> 
+	dplyr::select(-tidyselect::any_of(c(
+					"numChrono",
+					"confidentiality",
+					"deleted",
+					"updatedAt",
+					""))) |> 
+	dplyr::relocate(dateDepot) |> 
+	dplyr::relocate(id)
+
+dfAll |> 
+	DT::datatable(rownames = FALSE)
+
+```
+
+### Bilans
+
+```{r}
+
+mydtinpiai |> 
+  purrr::pluck("bilans") |> 
+  as.data.frame() |> 
+	dplyr::select(-tidyselect::any_of(c(
+					"numChrono",
+					"confidentiality",
+					"deleted",
+					"updatedAt",
+					""))) |> 
+	dplyr::relocate(dateDepot) |> 
+	dplyr::relocate(id) |> 
+	DT::datatable(rownames = FALSE)
+
+```
+

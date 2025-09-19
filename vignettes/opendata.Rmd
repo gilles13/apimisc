@@ -1,0 +1,127 @@
+---
+title: "Open data"
+output: 
+  flexdashboard::flex_dashboard:
+    logo: "../man/img/logoInsee.png"
+    orientation: rows
+    theme:
+      bootswatch: pulse
+vignette: >
+  %\VignetteIndexEntry{opendata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+	echo = FALSE,
+  comment = "#>"
+)
+```
+
+Column {.tabset}
+-------------------------------------------
+
+### Général
+
+#### Définition
+
+Selon Wikipédia ®
+
+> Les données ouvertes (en anglais : *open data*) sont des données numériques dont l'accès et l'usage sont laissés libres aux usagers, qui peuvent être d'origine privée mais surtout publique, produites notamment par une collectivité ou un établissement public. Elles sont diffusées de manière structurée selon une méthode et une licence ouverte garantissant leur libre accès et leur réutilisation par tous, sans restriction technique, juridique ou financière.
+L'accès aux données vise d'une part à permettre aux citoyens de mieux contrôler l'administration, d'autre part d'exploiter ces données, ce qui implique que ce droit d'accès s'accompagne d'un droit à la réutilisation des données.
+Ces droits d'accès et de réutilisation s'inscrivent dans la pensée qui considère l'information publique comme un bien commun (tel que défini par Elinor Ostrom) dont la diffusion est d'intérêt public et général.
+L'ouverture des données est ainsi à la fois une **philosophie de l'accès à l'information**, un mouvement de défense des libertés et une politique publique. 
+
+### Producteurs
+
+```{r, echo = FALSE}
+library("apimisc")
+
+dtprod |> 
+	dplyr::mutate(
+								lien = lien |> apimisc_make_link(text = "url"),
+								api = api |> apimisc_make_link(text = api)) |> 
+	DT::datatable(escape = FALSE)
+# 	knitr::kable() 
+```
+
+### Textes
+
+[2020 - Mission Bothorel](https://www.info.gouv.fr/upload/media/default/0001/01/2020_12_rapport_-_pour_une_politique_publique_de_la_donnee_-_23.12.2020__0.pdf){target="_blank"}
+
+[2020 - Annexe au rapport](https://www.info.gouv.fr/upload/media/default/0001/01/2020_12_annexes_-_rapport_-_pour_une_politique_publique_de_la_donnee_-_23.12.2020.pdf){target="_blank"}
+
+[Loi n° 2016-1321 (7 octobre 2016) "pour une république numérique"](https://www.legifrance.gouv.fr/dossierlegislatif/JORFDOLE000031589829/){target="_blank"}
+
+[Circulaire du 26 mai 2011 "création du portail unique des informations publiques de l'Etat data.gouv.fr par la mission Etalab"](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000024072788){target="_blank"}
+
+[Loi n° 78-753 (17 juillet 1978) "CADA : commission d'accès aux documents administratifs"](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000339241){target="_blank"}
+
+
+[Loi n° 78-17 (6 janvier 1978) "informatique et liberté"](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460/){target="_blank"}
+
+
+[Loi n° 51-711 (1951) "obligation, coordination, secret en matière de stat"](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000888573){target="_blank"}
+
+
+[codes des relations entre le public et l'administration](https://www.legifrance.gouv.fr/codes/id/LEGISCTA000031367685/){target="_blank"}
+
+Livre III : accès aux doc admin et réutilisation des informations publiques art L300-1 à L351-1
+
+### Liens
+
++ [base de données](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006278879){target="_blank"}
++ [open data maturity index 2024](https://data.europa.eu/en/open-data-maturity/2024){target="_blank"}
++ [open data maturity index 2021](https://www.etalab.gouv.fr/retour-sur-lopen-data-maturity-index-2021-mesure-de-limpact-de-louverture-des-donnees-2-4/){target="_blank"}
++ [etalab](https://www.etalab.gouv.fr/){target="_blank"}
++ [data.gouv](https://www.data.gouv.fr/){target="_blank"}
++ [schema.data.gouv](https://schema.data.gouv.fr/){target="_blank"}
++ [datapss](https://datapass.api.gouv.fr/){target="_blank"}
++ [api cada](https://cada.data.gouv.fr/api/){target="_blank"}
++ [dinum](https://www.numerique.gouv.fr/numerique-etat/dinum/){target="_blank"}
++ [opendatasoft](https://www.opendatasoft.com/fr/){target="_blank"}
++ [opendatafrance](https://opendatafrance.fr/){target="_blank"}
++ [choix des licences open data](https://opendatafrance.gitbook.io/odl-ressources/fiches-pratiques/aspects-juridiques/choix-des-licences-open-data){target="_blank"}
++ [observatoire data-publica](https://observatoire.data-publica.eu/){target="_blank"}
++ [datactivist](https://datactivist.coop/fr/){target="_blank"}
++ [anssi](https://cyber.gouv.fr/){target="_blank"}
++ [info.gouv](https://www.info.gouv.fr/){target="_blank"}
++ [charte graphique de l'état](https://www.info.gouv.fr/marque-de-letat/charte%20graphique-introduction){target="_blank"}
++ [science ouverte paris saclay](https://www.universite-paris-saclay.fr/recherche/science-ouverte/ouvrir-ses-donnees-comment-ca-marche){target="_blank"}
++ [insee.hal.science](https://insee.hal.science/){target="_blank"}
++ [insee offre open data](https://www.insee.fr/fr/information/2410988){target="_blank"}
++ [insee portail des api](https://portail-api.insee.fr/catalog/all){target="_blank"}
++ [drees open data](https://data.drees.solidarites-sante.gouv.fr/pages/accueil/){target="_blank"}
++ [okfn](https://www.okfn.org/fr/){target="_blank"}
++ [tuto data.gouv](https://tube.numerique.gouv.fr/w/9rvhdGpXmsPpCJa5CRwDZr){target="_blank"}
+
+### Plot
+
+```{r}
+library("igraph")
+library("networkD3")
+
+srcInsee <- 
+	c(
+		"insee",
+		"insee",
+		"insee",
+		"insee",
+		"insee")
+
+targInsee <- 
+	c(
+	 	"portail-api",
+		"sirene",
+		"bdm",
+		"medoli",
+		"insee.hal.science")
+
+networkInsee <- data.frame(srcInsee, targInsee)
+
+# Plot
+simpleNetwork(networkInsee, zoom = TRUE)
+```
+
