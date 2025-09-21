@@ -10,33 +10,11 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+	echo = FALSE,
+	fig.align="center",
+	fig.show="hold",
   comment = "#>"
 )
 ```
 
-```{r setup}
-library(apimisc)
-```
-
-Bonjour, 
-
-Le package `apimisc` est fait pour simplifier l'utilisation des API donnant accès à des données
-en *open data*.
-
-Il met en oeuvre et utilise 2 autres *packages* :
-
-+ `apisirene`
-+ `apiinpirne`
-
-L'utilisateur est obligé de créer préalablement des comptes sur :
-
-+ [insee partail des api](https://www.portail-api.insee.fr){target="_blank"}
-+ [inpi connect](https://data.inpi.fr/register){target="_blank"}
-
-La description des formalités à réaliser est disponible dans l'aide ou
-les vignettes des *packages*.
-
-Bonne utilisation
-
-PS : il est fortement recommandé de consulter la vignette
-sur l'*open data* ! :D
+TODO

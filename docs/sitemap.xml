@@ -1,0 +1,23 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/apimisc.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/introduction.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/apimisc_get_balo_siren.html</loc></url>
+<url><loc>/reference/apimisc_get_bodacc_siren.html</loc></url>
+<url><loc>/reference/apimisc_get_jo_cat.html</loc></url>
+<url><loc>/reference/apimisc_if_get_catalog_list.html</loc></url>
+<url><loc>/reference/apimisc_if_get_data.html</loc></url>
+<url><loc>/reference/apimisc_make_link.html</loc></url>
+<url><loc>/reference/apimisc_make_report.html</loc></url>
+<url><loc>/reference/apimisc_parse_bodacc_siren.html</loc></url>
+<url><loc>/reference/apimisc_parse_jo_cat.html</loc></url>
+<url><loc>/reference/apimisc_template_path.html</loc></url>
+<url><loc>/reference/apimisc_www_path.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+</urlset>
+

@@ -1,0 +1,53 @@
+---
+title: "apimisc"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{apimisc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+	echo = FALSE,
+	fig.align="center",
+	fig.show="hold",
+  comment = "#>"
+)
+```
+
+```{r, out.width="50%"}
+knitr::include_graphics(path = "../man/figures/logo_apimisc_center.png")
+```
+
+Le package `apimisc` est fait pour simplifier l'utilisation de certaines API.
+
+Il met en oeuvre et utilise 2 autres *packages* :
+
++ [`apisirene`](https://github.com/gilles13/apisirene){target="_blank"}
++ [`apiinpirne`](https://github.com/gilles13/apiinpirne){target="_blank"}
+
+<center>
+![](../man/figures/logo_apisirene_center.png){width="30%"}
+![](../man/figures/logo_apiinpirne_center.png){width="30%"}
+</center>
+
+L'utilisateur doit préalablement créer des comptes sur :
+
++ [insee partail des api](https://www.portail-api.insee.fr){target="_blank"}
+
++ [inpi connect](https://data.inpi.fr/register){target="_blank"}
+
+La description des formalités à réaliser est disponible dans l'aide ou
+les vignettes des *packages*.
+
+Le *package* [`apidoc`](https://github.com/gilles13/apidoc){target="_blank"} fournit d'autres informations sur les API.
+
+<center>
+![](../man/figures/logo_apidoc_center.png){width="30%"}
+</center>
+
+
+Bonne utilisation
+

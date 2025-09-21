@@ -1,0 +1,7 @@
+pandoc: 3.1.12.1
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  apimisc: apimisc.html
+  introduction: introduction.html
+last_built: 2025-09-21T14:11Z
