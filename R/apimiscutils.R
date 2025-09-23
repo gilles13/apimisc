@@ -102,9 +102,8 @@ apimisc_get_balo_siren <- function(siren = "") {
 }
 
 # ------------------------------------------------
-# ------------------------------------------------
-
 # API JO
+# ------------------------------------------------
 
 #' @title apimisc_get_jo_cat
 #' @description Retourne le catalogue de l'API journalofficiel
@@ -149,9 +148,8 @@ apimisc_parse_jo_cat <- function(cat, limite = TRUE) {
 }
 
 # ------------------------------------------------
-# ------------------------------------------------
-
 # INFO FINANCIERES
+# ------------------------------------------------
 
 #' @title apimisc_if_get_catalog_list
 #' @description Retourne la liste des catalogues de l'API info fi
@@ -297,3 +295,199 @@ get_params <- function(...) {
 # get_params(a, b = 2, ... = "titi")
 # get_params()
 # get_params(b)
+
+# ------------------------------------------------
+# BANQUE DE FRANCE
+# ------------------------------------------------
+
+#' @title get banque de france dataset catalog
+#' @description retourne un data.frame des datasets du catalogue banque de france
+#' @return data.frame
+#' @examples
+#' bdf_get_catalog(dataset = "OFC")
+#' @export
+bdf_get_catalog <- function() {
+	urlBase <- "https://webstat.banque-france.fr/api/explore/v2.1/catalog/datasets/webstat-datasets/exports/json?select=dataset_id,model_id,description_fr,description_en,series_count,dimensions_and_codelists,series_attributes_and_codelists,observations_attributes_and_codelists,sources,last_observation_date&order_by=dataset_id"
+  res <- 
+		urlBase |> 
+    httr2::request() |> 
+    httr2::req_headers(Authorization = paste("Apikey", Sys.getenv("WEBSTAT_APIKEY"))) |> 
+    httr2::req_headers("Accept" = 'application/json') |>  
+    httr2::req_perform() |> 
+		httr2::resp_body_json(simplify = TRUE)
+  return(res)
+}
+
+#' @title get series infos from banque de france dataset catalog
+#' @description retourne un data.frame d'information sur les series d'un dataset du catalogue banque de france
+#' @param dataset le code du catalogue
+#' @return data.frame
+#' @examples
+#' bdf_list_datasets(dataset = "OFC")
+#' @export
+bdf_list_datasets <- function(dataset = "OFC") {
+	urlBase <- "https://webstat.banque-france.fr/api/explore/v2.1/catalog/datasets/series/exports/json?select=series_key,title_fr,title_long_fr,title_en,title_long_en,first_time_period_date,last_time_period_date,source_agency,series_dimensions_and_values,series_attributes_and_values&refine=dataset_id:"
+  urlTot <- paste0(urlBase, dataset)
+  res <- 
+		urlTot |> 
+    httr2::request() |> 
+    httr2::req_headers(Authorization = paste("Apikey", Sys.getenv("WEBSTAT_APIKEY"))) |> 
+    httr2::req_headers("Accept" = 'application/json') |>  
+    httr2::req_perform() |> 
+		httr2::resp_body_json(simplify = TRUE)
+  return(res)
+}
+
+#' @title get serie from banque de france dataset catalog
+#' @description retourne un data.frame d'une serie de la banque de france
+#' @param key le nom de la serie
+#' @return data.frame
+#' @examples
+#' bdf_get_serie(key = "MIR1.M.FR.B.L23FRLA.D.R.A.2230U6.EUR.O")
+#' @export
+bdf_get_serie <- function(key = NULL) {
+	urlBase <- "https://webstat.banque-france.fr/api/explore/v2.1/catalog/datasets/observations/exports/json?order_by=time_period_start&refine=series_key:"
+	urlTot <- paste0(urlBase, key)
+	res <- 
+		urlTot |> 
+    httr2::request() |> 
+    httr2::req_headers(Authorization = paste("Apikey", Sys.getenv("WEBSTAT_APIKEY"))) |> 
+    httr2::req_headers("Accept" = 'application/json') |>  
+    httr2::req_perform() |> 
+		httr2::resp_body_json(simplify = TRUE)
+  return(res)
+}
+
+# ----------------------------------------------------------
+# API DATA.GOUV.FR DOCUMENTATION
+# ----------------------------------------------------------
+
+#' @title get data.gouv.fr data portal informations
+#' @description crée un répertoire dans HOME et enregistre un data.frame sur les series de data.gouv.fr
+#' @return data.frame
+#' @examples
+#' dg_get_site_data_portal()
+#' @export
+dg_get_site_data_portal <- function() {
+	urlBase <- "https://www.data.gouv.fr/api/1/site/data.json"
+	homeDir <- Sys.getenv("HOME")
+	siteDataDir <- paste0(homeDir, "/.site_data_portal")
+	siteDataFile <- paste0(siteDataDir, "/data.RDS")
+	if(!dir.exists(file.path(siteDataDir))) {
+		dir.create(file.path(siteDataDir))
+	}
+  res <- 
+    urlBase |> 
+    httr2::request() |> 
+    httr2::req_headers("Accept" = 'application/json') |>  
+    httr2::req_perform() |> 
+    httr2::resp_body_json(simplify = TRUE)
+	saveRDS(object = res, file = paste0(siteDataDir, "/data.RDS"))
+	message("Objet sauvegardé dans :", siteDataDir)
+	return(res)
+}
+
+#' @title read data.gouv.fr data portal informations
+#' @description lit dans le répertoire HOME le fichier sur les series de data.gouv.fr
+#' @return data.frame
+#' @examples
+#' dg_read_site_data_portal()
+#' @export
+dg_read_site_data_portal <- function() {
+	homeDir <- Sys.getenv("HOME")
+	siteDataDir <- paste0(homeDir, "/.site_data_portal")
+	siteDataFile <- paste0(siteDataDir, "/data.RDS")
+	myfile <- readRDS(siteDataFile)
+	res <- 
+		myfile |> 
+		purrr::pluck("@graph") |> 
+		janitor::clean_names() |> 
+		data.frame()
+	return(res)
+}
+
+#' @title make report on dataservice
+#' @description crée un rapport sur un dataservice
+#' @param ident l'identifiant du dataservice
+#' @return flexdashboard report
+#' @examples
+#' dg_report_dataservice(id = NULL)
+#' @export
+dg_report_dataservice <- function(ident) {
+	res <- 
+		dt |> 
+		dplyr::filter(id == ident) |> 
+		dplyr::select(title, type, id, distribution, keyword, description)
+	return(res)
+}
+
+# ----------------------------------------------------------
+# IMF
+# ----------------------------------------------------------
+
+#' @title get countries code
+#' @description telecharge les codes pays et lib en fr (iso 3166 alpha 3)
+#' @return data.frame
+#' @examples
+#' imf_get_country()
+#' @export
+imf_get_country <- function() {
+  entrypoint <- "https://www.imf.org/external/datamapper/api/v1/countries"
+  res <- 
+    httr2::request(entrypoint) |> 
+    httr2::req_headers(`Content-Type` = 'application/json') |> 
+    httr2::req_perform() |>
+		httr2::resp_body_json(simplify = TRUE)
+  countriescode <- 
+    res |> 
+    purrr::pluck("countries") |> 
+    names()
+  countrieslab <- 
+    res |> 
+    purrr::pluck("countries") |>
+    purrr::map_dfr(\(x) {
+			tibble::tibble(
+        labels = x |> purrr::pluck('label', .default = "")
+      )}) |> 
+    dplyr::pull()
+  resultat <- data.frame(
+    code = countriescode,
+    label = countrieslab
+  )
+  return(resultat)
+}
+
+#' @title get dataset informations
+#' @description telecharge des infos sur les datasets dispo sur IMF
+#' @return data.frame
+#' @examples
+#' imf_get_dataset_info()
+#' @export
+imf_get_dataset_info <- function() {
+  entrypoint <- "https://www.imf.org/external/datamapper/api/v1/indicators"
+  res <- 
+    httr2::request(entrypoint) |> 
+    httr2::req_headers(`Content-Type` = 'application/json') |> 
+    httr2::req_perform() |>
+		httr2::resp_body_json(simplify = TRUE)
+  imfindiccode <- 
+    res |> 
+    purrr::pluck('indicators') |> 
+    names()
+  imfindicinfos <- 
+    res |> 
+    purrr::pluck('indicators', .default = "") |> 
+    purrr::map_dfr(\(x) {
+			 tibble::tibble(
+        dataset = x |> purrr::pluck('dataset', .default = ""),
+        label = x |> purrr::pluck('label', .default = ""),
+        desc = x |> purrr::pluck('description', .default = ""),
+        unit = x |> purrr::pluck('unit', .default = "")
+      )
+    })
+  resultat <- cbind(
+    tibble::tibble(code = imfindiccode),
+    imfindicinfos
+  )
+  return(resultat)
+}
