@@ -10,8 +10,10 @@ dg_read_site_data_portal()
 data.frame
 }
 \description{
-lit dans le répertoire HOME le fichier sur les series de data.gouv.fr
+lit dans le repertoire HOME le fichier sur les series de data.gouv.fr
 }
 \examples{
+\dontrun{
 dg_read_site_data_portal()
+}
 }

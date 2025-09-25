@@ -16,5 +16,7 @@ une chaine de char
 Retourne le chemin du repertoire www
 }
 \examples{
+\dontrun{
 apimisc_www_path(pack = "apimisc")
+}
 }

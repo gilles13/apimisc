@@ -13,5 +13,7 @@ data.frame
 retourne un data.frame des datasets du catalogue banque de france
 }
 \examples{
+\dontrun{
 bdf_get_catalog(dataset = "OFC")
+}
 }

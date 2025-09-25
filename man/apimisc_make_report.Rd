@@ -13,8 +13,10 @@ apimisc_make_report(siren)
 un fichier html, affiche dans le browser
 }
 \description{
-Affiche une page html synthétisant de l'information de base
+Affiche une page html synthetisant de l'information de base
 }
 \examples{
+\dontrun{
 apimisc_make_report(siren = "401887401")
+}
 }

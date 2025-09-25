@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, out.width="50%"}
+```{r, out.width="30%"}
 knitr::include_graphics(path = "../man/figures/logo_apimisc_center.png")
 ```
 
-Le package `apimisc` est fait pour simplifier l'utilisation de certaines API.
+Le package `apimisc` simplifie l'utilisation de certaines API.
 
 Il met en oeuvre et utilise 2 autres *packages* :
 
@@ -29,23 +29,37 @@ Il met en oeuvre et utilise 2 autres *packages* :
 + [`apiinpirne`](https://github.com/gilles13/apiinpirne){target="_blank"}
 
 <center>
-![](../man/figures/logo_apisirene_center.png){width="30%"}
-![](../man/figures/logo_apiinpirne_center.png){width="30%"}
+![](../man/figures/logo_apisirene_center.png){width="15%"}
+![](../man/figures/logo_apiinpirne_center.png){width="15%"}
 </center>
 
-L'utilisateur doit préalablement créer des comptes sur :
+Pour bénéficier de toutes les fonctionnalités du *package*, l'utilisateur doit préalablement créer des comptes sur :
 
-+ [insee partail des api](https://www.portail-api.insee.fr){target="_blank"}
++ [Insee portail des api](https://www.portail-api.insee.fr){target="_blank"}
 
-+ [inpi connect](https://data.inpi.fr/register){target="_blank"}
++ [Inpi connect](https://data.inpi.fr/register){target="_blank"}
+
++ [Webstat Banque de France](https://webstat.banque-france.fr/fr/){target="_blank"}
 
 La description des formalités à réaliser est disponible dans l'aide ou
 les vignettes des *packages*.
 
+Il est toutefois possible d'utiliser certaines fonctions pour récupérer des données sans compte utilisateur.
+
+C'est notamment le cas pour les API :
+
++ Eurostat
+
++ IMF (Fonds Monétaire International)
+
++ World Bank
+
++ OCDE ??
+
 Le *package* [`apidoc`](https://github.com/gilles13/apidoc){target="_blank"} fournit d'autres informations sur les API.
 
 <center>
-![](../man/figures/logo_apidoc_center.png){width="30%"}
+![](../man/figures/logo_apidoc_center.png){width="25%"}
 </center>
 
 

@@ -13,5 +13,7 @@ data.frame
 telecharge des infos sur les datasets dispo sur IMF
 }
 \examples{
+\dontrun{
 imf_get_dataset_info()
+}
 }

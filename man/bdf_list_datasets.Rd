@@ -16,5 +16,7 @@ data.frame
 retourne un data.frame d'information sur les series d'un dataset du catalogue banque de france
 }
 \examples{
+\dontrun{
 bdf_list_datasets(dataset = "OFC")
+}
 }

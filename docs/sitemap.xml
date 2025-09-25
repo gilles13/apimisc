@@ -18,6 +18,14 @@
 <url><loc>/reference/apimisc_parse_jo_cat.html</loc></url>
 <url><loc>/reference/apimisc_template_path.html</loc></url>
 <url><loc>/reference/apimisc_www_path.html</loc></url>
+<url><loc>/reference/bdf_get_catalog.html</loc></url>
+<url><loc>/reference/bdf_get_serie.html</loc></url>
+<url><loc>/reference/bdf_list_datasets.html</loc></url>
+<url><loc>/reference/dg_get_site_data_portal.html</loc></url>
+<url><loc>/reference/dg_read_site_data_portal.html</loc></url>
+<url><loc>/reference/dg_report_dataservice.html</loc></url>
+<url><loc>/reference/imf_get_country.html</loc></url>
+<url><loc>/reference/imf_get_dataset_info.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 </urlset>
 

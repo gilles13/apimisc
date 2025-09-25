@@ -14,9 +14,10 @@ Depends:
 Imports: 
     dplyr (>= 0.8),
     httr2,
+    janitor,
     purrr,
     tibble,
-    tidyr
+    tidyselect
 LazyData: true
 Suggests: 
     knitr,

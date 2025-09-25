@@ -16,5 +16,7 @@ un data.frame du resultat de la requete sur siren dans le balo
 Retourne le resultat de la requete sur siren dans le balo
 }
 \examples{
+\dontrun{
 apimisc_get_balo_siren(siren = "123456789")
+}
 }

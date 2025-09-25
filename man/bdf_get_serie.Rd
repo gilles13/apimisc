@@ -16,5 +16,7 @@ data.frame
 retourne un data.frame d'une serie de la banque de france
 }
 \examples{
+\dontrun{
 bdf_get_serie(key = "MIR1.M.FR.B.L23FRLA.D.R.A.2230U6.EUR.O")
+}
 }

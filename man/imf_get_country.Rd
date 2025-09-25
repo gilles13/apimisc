@@ -13,5 +13,7 @@ data.frame
 telecharge les codes pays et lib en fr (iso 3166 alpha 3)
 }
 \examples{
+\dontrun{
 imf_get_country()
+}
 }

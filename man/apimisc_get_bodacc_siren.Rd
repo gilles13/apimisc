@@ -16,5 +16,7 @@ un data.frame du resultat de la requete sur siren
 Retourne le resultat de la requete sur siren dans le bodacc
 }
 \examples{
+\dontrun{
 apimisc_get_bodacc_siren(siren = "123456789")
+}
 }

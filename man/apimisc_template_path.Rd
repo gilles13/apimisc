@@ -18,5 +18,7 @@ une chaine de char
 Retourne le chemin du template Rmarkdown pour dashboard siren
 }
 \examples{
+\dontrun{
 apimisc_template_path(pack = "apimisc")
+}
 }

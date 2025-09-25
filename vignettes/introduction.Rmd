@@ -17,4 +17,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-TODO
+Le *package* `apimisc` permet d'utiliser plusieurs API (assez) facilement.
+
+Les fonctions sont divisées en plusieurs catégories :
+
++ `apimisc_xxx` : fonctions diverses (génériques)
+
++ `bdf_xxx` : pour l'API Banque de France
+
++ `imf_xxx` : pour l'API du FMI
+
++ `if_xxx` : pour l'API Info-financieres
+
++ `wb_xxx` : pour l'API World Bank
+

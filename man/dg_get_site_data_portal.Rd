@@ -10,8 +10,10 @@ dg_get_site_data_portal()
 data.frame
 }
 \description{
-crée un répertoire dans HOME et enregistre un data.frame sur les series de data.gouv.fr
+cree un repertoire dans HOME et enregistre un data.frame sur les series de data.gouv.fr
 }
 \examples{
+\dontrun{
 dg_get_site_data_portal()
+}
 }

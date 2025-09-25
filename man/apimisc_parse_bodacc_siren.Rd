@@ -16,5 +16,7 @@ un data.frame du resultat parse de la requete sur siren
 Retourne le resultat parse de la requete sur siren dans le bodacc
 }
 \examples{
-apimisc_parse_bodacc_siren(x)
+\dontrun{
+apimisc_parse_bodacc_siren(x = marequete)
+}
 }

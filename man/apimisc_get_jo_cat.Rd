@@ -13,5 +13,7 @@ un data.frame des catalogues de l'API JO
 Retourne le catalogue de l'API journalofficiel
 }
 \examples{
+\dontrun{
 apimisc_get_jo_cat()
+}
 }

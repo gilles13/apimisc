@@ -8,6 +8,8 @@ apimisc_parse_jo_cat(cat, limite = TRUE)
 }
 \arguments{
 \item{cat}{le catalogue a parser}
+
+\item{limite}{si TRUE (par defaut), limite a 4 le nb de variables renvoyees par la fonction}
 }
 \value{
 un data.frame des catalogues de l'API JO parse
@@ -16,5 +18,7 @@ un data.frame des catalogues de l'API JO parse
 Retourne le catalogue de l'API journalofficiel parse
 }
 \examples{
-apimisc_parse_jo_cat(cat = "")
+\dontrun{
+apimisc_parse_jo_cat(cat = "moncat")
+}
 }
