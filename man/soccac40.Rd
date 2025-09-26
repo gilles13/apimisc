@@ -3,8 +3,7 @@
 \docType{data}
 \name{soccac40}
 \alias{soccac40}
-\title{Dataset contenant les info d'info-fin
-Les variables sont les suivantes}
+\title{Information about info-fi}
 \format{
 A data frame with x rows and y variables:
 \describe{

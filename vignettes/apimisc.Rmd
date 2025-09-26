@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, out.width="30%"}
+```{r, out.width="15%"}
 knitr::include_graphics(path = "../man/figures/logo_apimisc_center.png")
 ```
 
@@ -56,12 +56,11 @@ C'est notamment le cas pour les API :
 
 + OCDE ??
 
+## Liens
+
 Le *package* [`apidoc`](https://github.com/gilles13/apidoc){target="_blank"} fournit d'autres informations sur les API.
 
 <center>
 ![](../man/figures/logo_apidoc_center.png){width="25%"}
 </center>
-
-
-Bonne utilisation
 

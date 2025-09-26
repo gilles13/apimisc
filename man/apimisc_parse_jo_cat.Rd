@@ -18,7 +18,5 @@ un data.frame des catalogues de l'API JO parse
 Retourne le catalogue de l'API journalofficiel parse
 }
 \examples{
-\dontrun{
-apimisc_parse_jo_cat(cat = "moncat")
-}
+\dontrun{apimisc_parse_jo_cat(cat = "moncat")}
 }

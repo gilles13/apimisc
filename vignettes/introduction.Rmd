@@ -17,9 +17,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-Le *package* `apimisc` permet d'utiliser plusieurs API (assez) facilement.
+## Utilité
+Le *package* `apimisc` permet d'utiliser des API (assez) facilement.
 
-Les fonctions sont divisées en plusieurs catégories :
+Les fonctions sont divisées en catégories :
 
 + `apimisc_xxx` : fonctions diverses (génériques)
 
@@ -30,4 +31,8 @@ Les fonctions sont divisées en plusieurs catégories :
 + `if_xxx` : pour l'API Info-financieres
 
 + `wb_xxx` : pour l'API World Bank
+
+## Documentation
+
+Les fonctions du *package* sont documentées sur [apidoc](https://gilles13.github.io/apidoc/index.html){target="_blank"}
 

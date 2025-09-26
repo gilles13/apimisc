@@ -1,3 +1,13 @@
+globalVariables(c("url_complete", "dateparution",
+									"numeroannonce", "numerodepartement", "desc", "description",
+									"records_count", "attributions", "dt", "id", "title",
+									"bbox",
+									"type",
+									"distribution",
+									"keyword",
+									"publicationavis"))
+
+
 #' @title apimisc_make_link
 #' @description Retourne la chaine de caractere entouree des balises pour la rendre cliquable
 #' @param url l'url a rendre cliquable
@@ -5,7 +15,7 @@
 #' @return une chaine de caracteres cliquable
 #' @examples
 #' \dontrun{
-#' apimisc_make_link(url = "https://mapetiteurl.fr", text = "clic")
+#' apimisc_make_link(url = "monurl", text = 'clic')
 #' @export
 #' }
 apimisc_make_link <- function(url, text = "clic"){
@@ -73,7 +83,7 @@ apimisc_parse_bodacc_siren <- function(x) {
 																				""))) |> 
 		dplyr::rename(url = url_complete) |> 
 		dplyr::mutate(dateparution = as.Date(dateparution, format = "%Y-%m-%d")) |> 
-		dplyr::mutate(url = apimisc_make_link(url)) |> 
+		dplyr::mutate(url = apimisc::apimisc_make_link(url)) |> 
 		dplyr::relocate(dateparution) |> 
 		dplyr::rename(pubavis = publicationavis) |> 
 		dplyr::rename(num = numeroannonce) |> 
@@ -137,9 +147,7 @@ apimisc_get_jo_cat <- function() {
 #' @param cat le catalogue a parser
 #' @param limite si TRUE (par defaut), limite a 4 le nb de variables renvoyees par la fonction
 #' @examples
-#' \dontrun{
-#' apimisc_parse_jo_cat(cat = "moncat")
-#' }
+#' \dontrun{apimisc_parse_jo_cat(cat = "moncat")}
 #' @export
 apimisc_parse_jo_cat <- function(cat, limite = TRUE) {
 	codename <- 
