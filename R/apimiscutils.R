@@ -7,7 +7,6 @@ globalVariables(c("url_complete", "dateparution",
 									"keyword",
 									"publicationavis"))
 
-
 #' @title apimisc_make_link
 #' @description Retourne la chaine de caractere entouree des balises pour la rendre cliquable
 #' @param url l'url a rendre cliquable
@@ -15,11 +14,11 @@ globalVariables(c("url_complete", "dateparution",
 #' @return une chaine de caracteres cliquable
 #' @examples
 #' \dontrun{
-#' apimisc_make_link(url = "monurl", text = 'clic')
-#' @export
+#' apimisc_make_link(url = "monurl", text = "clic")
 #' }
+#' @export
 apimisc_make_link <- function(url, text = "clic"){
-  paste0("<a target = '_blank' href= ", url, ">", text, "</a>")
+  paste0("<a target = \'_blank\' href= ", url, ">", text, "</a>")
 }
 
 #' @title apimisc_get_bodacc_siren

@@ -23,3 +23,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/gilles13/apimisc
+BugReports: https://github.com/gilles13/apimisc/issues

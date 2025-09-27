@@ -3,6 +3,7 @@
 export(apimisc_get_balo_siren)
 export(apimisc_get_bodacc_siren)
 export(apimisc_get_jo_cat)
+export(apimisc_make_link)
 export(apimisc_make_report)
 export(apimisc_parse_bodacc_siren)
 export(apimisc_parse_jo_cat)

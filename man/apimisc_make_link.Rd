@@ -17,3 +17,8 @@ une chaine de caracteres cliquable
 \description{
 Retourne la chaine de caractere entouree des balises pour la rendre cliquable
 }
+\examples{
+\dontrun{
+apimisc_make_link(url = "monurl", text = "clic")
+}
+}

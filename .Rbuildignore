@@ -1,0 +1,20 @@
+# Fichiers/dossiers liés à pkgdown à ignorer
+^_pkgdown\.yml$      # fichier de configuration pkgdown
+^docs$               # site statique généré par pkgdown
+^pkgdown$            # cache pkgdown éventuel
+
+# Fichiers/dossiers de dev à ignorer
+^\.github$           # workflows GitHub Actions
+^\.gitlab-ci\.yml$   # CI GitLab
+^\.travis\.yml$      # config Travis
+^\.Rproj\.user$      # dossier RStudio
+^.*\.Rproj$          # fichier projet RStudio
+^README\.Rmd$        # si tu génères README.md depuis README.Rmd
+^LICENSE\.md$        # version markdown de la licence
+^cran-comments\.md$  # tes notes pour CRAN
+^NEWS\.md$           # changelog en markdown
+
+# Autres dossiers/fichiers non utiles pour CRAN
+^data-raw$           # scripts pour construire des données internes
+^revdep$             # résultats de revdepcheck
+^inst/doc$           # vignettes précompilées (laisser R les construire)

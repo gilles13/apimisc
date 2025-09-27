@@ -17,21 +17,33 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, out.width="15%"}
+```{r, out.width="15%", fig.align = "left"}
 knitr::include_graphics(path = "../man/figures/logo_apimisc_center.png")
 ```
 
+## Utilité
+
 Le package `apimisc` simplifie l'utilisation de certaines API.
 
-Il met en oeuvre et utilise 2 autres *packages* :
+```{r, out.width="15%", fig.align = "left"}
+knitr::include_graphics(path = "../man/figures/logo_eurostat.png")
+```
+
+```{r, out.width="15%", fig.align = "left"}
+knitr::include_graphics(path = "../man/figures/logo_banque_de_france_2022.png")
+```
+
+Il utilise d'autres *packages* :
 
 + [`apisirene`](https://github.com/gilles13/apisirene){target="_blank"}
-+ [`apiinpirne`](https://github.com/gilles13/apiinpirne){target="_blank"}
+![](../man/figures/logo_apisirene_center.png){width="5%"}
 
-<center>
-![](../man/figures/logo_apisirene_center.png){width="15%"}
-![](../man/figures/logo_apiinpirne_center.png){width="15%"}
-</center>
++ [`apiinpirne`](https://github.com/gilles13/apiinpirne){target="_blank"}
+![](../man/figures/logo_apiinpirne_center.png){width="5%"}
+
++ [`eurostat`](https://ropengov.github.io/eurostat/articles/eurostat_tutorial.html){target="_blank"}
+
+## Installation
 
 Pour bénéficier de toutes les fonctionnalités du *package*, l'utilisateur doit préalablement créer des comptes sur :
 
@@ -63,4 +75,5 @@ Le *package* [`apidoc`](https://github.com/gilles13/apidoc){target="_blank"} fou
 <center>
 ![](../man/figures/logo_apidoc_center.png){width="25%"}
 </center>
+
 
