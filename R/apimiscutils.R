@@ -117,56 +117,6 @@ apimisc_get_balo_siren <- function(siren = "") {
 	return(res)
 }
 
-# ------------------------------------------------
-# API JO
-# ------------------------------------------------
-
-#' @title apimisc_get_jo_cat
-#' @description Retourne le catalogue de l'API journalofficiel
-#' @return un data.frame des catalogues de l'API JO
-#' @examples
-#' \dontrun{
-#' apimisc_get_jo_cat()
-#' }
-#' @export
-apimisc_get_jo_cat <- function() {
-	urlBase <- "https://journal-officiel-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets?limit=50&offset=0&timezone=UTC&include_links=false&include_app_metas=false"
-	res <- 
-		urlBase |> 
-		httr2::request() |> 
-		httr2::req_headers("Accept" = 'application/json') |>
-		httr2::req_perform() |> 
-		httr2::resp_body_json(simplifyVector = TRUE)
-	return(res)
-}
-
-#' @title apimisc_parse_jo_cat
-#' @description Retourne le catalogue de l'API journalofficiel parse
-#' @return un data.frame des catalogues de l'API JO parse
-#' @param cat le catalogue a parser
-#' @param limite si TRUE (par defaut), limite a 4 le nb de variables renvoyees par la fonction
-#' @examples
-#' \dontrun{apimisc_parse_jo_cat(cat = "moncat")}
-#' @export
-apimisc_parse_jo_cat <- function(cat, limite = TRUE) {
-	codename <- 
-		cat |> 
-		purrr::pluck("results", "dataset_id")
-	metas <- 
-		cat |> 
-		purrr::pluck("results", "metas", "default") |> 
-		dplyr::select(-description, -bbox)
-	res <- 
-		cbind(codename, metas)
-	if(limite) {
-		res <- 
-			res |> 
-			dplyr::select(codename, title, records_count, attributions)
-	}
-	return(res)
-}
-
-
 #' @title acceder au repertoire du template pour tdb multi api
 #' @description Retourne le chemin du template Rmarkdown pour dashboard siren
 #' @param pack le nom du package
@@ -224,7 +174,6 @@ apimisc_www_path <- function(pack = "apimisc") {
 	return(file.path(r_path))
 }
 
-
 #' @title generer un rapport html d'une entreprise
 #' @description Affiche une page html synthetisant de l'information de base
 #' @param siren une chaine de caractere pour l'entreprise a consulter
@@ -245,6 +194,55 @@ apimisc_make_report <- function(siren) {
 	)
 	message("Le fichier genere : ", apisitempfile)
 	utils::browseURL(apisitempfile)
+}
+
+# ------------------------------------------------
+# API JO
+# ------------------------------------------------
+
+#' @title apimisc_get_jo_cat
+#' @description Retourne le catalogue de l'API journalofficiel
+#' @return un data.frame des catalogues de l'API JO
+#' @examples
+#' \dontrun{
+#' apimisc_get_jo_cat()
+#' }
+#' @export
+apimisc_get_jo_cat <- function() {
+	urlBase <- "https://journal-officiel-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets?limit=50&offset=0&timezone=UTC&include_links=false&include_app_metas=false"
+	res <- 
+		urlBase |> 
+		httr2::request() |> 
+		httr2::req_headers("Accept" = 'application/json') |>
+		httr2::req_perform() |> 
+		httr2::resp_body_json(simplifyVector = TRUE)
+	return(res)
+}
+
+#' @title apimisc_parse_jo_cat
+#' @description Retourne le catalogue de l'API journalofficiel parse
+#' @return un data.frame des catalogues de l'API JO parse
+#' @param cat le catalogue a parser
+#' @param limite si TRUE (par defaut), limite a 4 le nb de variables renvoyees par la fonction
+#' @examples
+#' \dontrun{apimisc_parse_jo_cat(cat = "moncat")}
+#' @export
+apimisc_parse_jo_cat <- function(cat, limite = TRUE) {
+	codename <- 
+		cat |> 
+		purrr::pluck("results", "dataset_id")
+	metas <- 
+		cat |> 
+		purrr::pluck("results", "metas", "default") |> 
+		dplyr::select(-description, -bbox)
+	res <- 
+		cbind(codename, metas)
+	if(limite) {
+		res <- 
+			res |> 
+			dplyr::select(codename, title, records_count, attributions)
+	}
+	return(res)
 }
 
 # ------------------------------------------------
@@ -547,7 +545,53 @@ wb_get_catalog <- function() {
   return(res)
 }
 
+# ----------------------------------------------------------
+# OECD
+# ----------------------------------------------------------
+
+#' @title get oecd catalog
+#' @description telecharge les catalogues de donnees de l'ocde
+#' @return data.frame
+#' @examples
+#' \dontrun{
+#' oecd_get_catalog()
+#' }
+#' @export
+oecd_get_catalog <- function() {
+	entrypoint <- "https://sdmx.oecd.org/public/rest/dataflow"
+	dt <- 
+		entrypoint |> 
+		httr2::request() |> 
+		httr2::req_cache(tempdir()) |>
+		httr2::req_headers(`Content-Type` = 'application/xml') |> 
+		httr2::req_perform() |> 
+		httr2::resp_body_xml()
+	# mytemp <- tempfile(pattern = "file_", fileext = ".xml")
+	# xml2::write_xml(dt, file = mytemp)
+	dataflowid <- 
+		xml2::xml_find_all(dt, ".//structure:Dataflow") |> 
+		xml2::xml_attr("id")
+	dataflowagency <- 
+		xml2::xml_find_all(dt, ".//structure:Dataflow") |> 
+		xml2::xml_attr("agencyID")
+	items <- xml2::xml_find_all(dt, ".//structure:Dataflow")
+	dataflowname <-
+		sapply(items, function(x) {
+						 node <- xml2::xml_find_first(x, ".//common:Name")
+						 if(is.null(node)) return(NA)
+						 xml2::xml_text(node)
+	})
+	dtf <- 
+		tibble::tibble(
+									 dataflowid,
+									 dataflowagency,
+									 dataflowname)
+	return(dtf)
+}
+
+# ----------------------------------------------------------
 # MISC
+# ----------------------------------------------------------
 
 # get_params <- function(...) {
 #   arguments <- as.list(match.call())
